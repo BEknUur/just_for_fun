@@ -1,0 +1,12 @@
+[project]
+name = "mcp-server"
+version = "0.1.0"
+description = "kotaq_mcp_edition"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp[cli]>=1.27,<2",
+    
+    "pandas>=3.0.5",
+    "pyarrow>=25.0.0",
+]
