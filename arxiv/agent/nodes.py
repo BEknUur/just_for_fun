@@ -36,3 +36,24 @@ def create_generate_query_node(llm):
         }
 
     return generate_query
+
+
+
+def create_search_node(tools):
+    tools_by_name = {tool.name: tool for tool in tools}
+    search_tool = tools_by_name["search_arxiv"]
+
+    async def search_arxiv_node(state: dict) -> dict:
+        result = await search_tool.ainvoke(
+            {
+                "query": state["search_query"],
+                "category": state.get("category"),
+                "max_results": state.get("max_results", 5),
+            }
+        )
+
+        return {"papers": result}
+
+    return search_arxiv_node
+
+
